@@ -2,6 +2,7 @@ package com.arpan.irctc
 
 import com.arpan.irctc.config.WebDriverManager
 import com.arpan.irctc.model.JourneyDetails
+import com.arpan.irctc.model.TrainDetails
 import com.arpan.irctc.pages.HomePage
 import com.arpan.irctc.pages.LoginPage
 
@@ -14,9 +15,10 @@ fun main() {
     val journeyDetails = JourneyDetails(
         "BHOPAL  JN - BPL",
         "GWALIOR - GWL",
-        "17-10-2019",
-        "Sleeper (SL)"
+        "17-10-2019"
     )
+    val trainDetails = TrainDetails("12625","AC 2 Tier (2A)")
+
     val userName = System.getenv("USERNAME") ?: "username"
     val password = System.getenv("PASSWORD") ?: "password"
 
@@ -25,6 +27,7 @@ fun main() {
     homePage.waitTillLoginIsSuccessful()
     println("Login successful")
     homePage.fillJourneyDetails(journeyDetails)
+    homePage.selectTrain(trainDetails)
 
     driver.close()
 }
